@@ -8,11 +8,19 @@ export async function index(){
     console.log(error)
   }
 }
-// export async function create(){
-//   try {
-//     const res = await fetch(BASE_URL)/new
-//     // return res.json()
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+export async function create(formData){
+  try {
+    const res = await fetch(BASE_URL,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(formData)
+
+    })
+    return res.json()
+  
+  } catch (error) {
+    console.log(error)
+  }
+}

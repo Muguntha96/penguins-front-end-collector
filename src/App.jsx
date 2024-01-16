@@ -16,6 +16,7 @@ import NewPenguin from './pages/NewPenguin/NewPenguin'
 // import PenguinList from './PenguinsList/PenguinsList.css'
 const App = () => {
   const  [penguins,setPenguins]=useState([])
+  const navigate=useNavigate()
   useEffect(() =>{
     const fetchPenguin= async () =>{
       const data=await penguinService.index()
@@ -24,6 +25,12 @@ const App = () => {
     fetchPenguin()
     
   },[])
+
+  const handleAddPenguin = async (formData)=>{
+    const newPenguin= await penguinService.create(formData)
+    setPenguins([penguins,...newPenguin])
+    navigate('/penguins')
+  }
   return (
     <>
       <Nav />
