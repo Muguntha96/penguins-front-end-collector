@@ -28,7 +28,7 @@ const App = () => {
 
   const handleAddPenguin = async (formData)=>{
     const newPenguin= await penguinService.create(formData)
-    setPenguins([penguins,...newPenguin])
+    setPenguins([newPenguin,...penguins])
     navigate('/penguins')
   }
   return (
@@ -37,7 +37,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/penguins' element={<PenguinsList penguins={penguins} />} />
-        <Route path='/penguins/new' element={<NewPenguin />} />
+        <Route path='/penguins/new' element={<NewPenguin handleAddPenguin={handleAddPenguin} />} />
       </Routes>
     </>
     );
